@@ -102,3 +102,13 @@ body {
 .hex-value {
   text-transform: uppercase;
 }
+
+.copy-btn {
+  color: #64748b;
+  font-weight: 700;
+  transition: all 300ms ease;
+}
+.color-card:hover .copy-btn {
+  color: #667eea;
+  transform: translateY(-2px);
+}

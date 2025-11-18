@@ -4,6 +4,33 @@ const paletteContainer = document.querySelector(".palette-container");
 generateBtn.addEventListener("click", generatePalette);
 paletteContainer.addEventListener("click", copyColor);
 
+function copyColor(event) {
+  const colorCard = event.target.closest(".color-card");
+  const copyBtn = colorCard.querySelector(".copy-btn");
+
+  const hexValue = colorCard.querySelector(".hex-value").textContent;
+  navigator.clipboard
+    .writeText(hexValue)
+    .then(() => {
+      showCopySuccess(copyBtn);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+function showCopySuccess(copyBtn) {
+  copyBtn.classList.remove("far", "fa-copy");
+  copyBtn.classList.add("fas", "fa-check");
+  copyBtn.style.color = "#48bb78";
+
+  setTimeout(() => {
+    copyBtn.classList.remove("fas", "fa-check");
+    copyBtn.classList.add("far", "fa-copy");
+    copyBtn.style.color = "";
+  }, 1500);
+}
+
 function generatePalette() {
   const colors = [];
   for (let i = 0; i < 5; i++) {
@@ -34,5 +61,3 @@ function generateRandomColor() {
   }
   return color;
 }
-
-function copyColor() {}
